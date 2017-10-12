@@ -52,6 +52,10 @@ from nltk.sentiment.util import mark_negation
 
 ```python
 # read the training data
+# NOTE: I am using training_data_lexicon which is NOT part of the original dataset.  See the notebook
+#       06_pr_sa_emotions_liu_hu_lexicon to see how I added pos_words/neg_words/neu_words/disposition to the 
+#       original data set for both training and testing.
+#       I did this to see if these features help in the sentiment analysis - and they did appear to help.
 training_data = pd.read_csv('../data/kaggle/sa-emotions/train_data_lexicon.csv')
 ```
 
@@ -69,6 +73,7 @@ training_data.shape
 
 
 ```python
+# notice the training data includes the extra feature columns that I added.
 training_data.head(20)
 ```
 
@@ -541,7 +546,7 @@ training_data.shape
 
 
 ```python
-
+# See: 06_pr_sa_emotions_homework notebook for the details of how I arrived at the parameters. 
 # create stemmer and vectorizer
 stemmer = nltk.stem.SnowballStemmer('english')
 stemmed_tfidf_vectorizer = StemmedTfidfVectorizer(stemmer=stemmer, min_df=5, max_df=0.8, ngram_range=(1,4), stop_words='english', sublinear_tf=True)
@@ -611,6 +616,7 @@ test_data.shape
 
 
 ```python
+#Notice the testing data also has the extra feature columns added in the csv file.
 test_data.head()
 ```
 
